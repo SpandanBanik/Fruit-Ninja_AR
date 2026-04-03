@@ -1,62 +1,92 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>FRUIT NINJA — Hand Edition</title>
-<link href="https://fonts.googleapis.com/css2?family=Bangers&family=Nunito:wght@400;700;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FRUIT NINJA — Hand Edition</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bangers&family=Nunito:wght@400;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- SPLASH -->
+    <div id="splash" class="screen">
+      <div class="splash-title">FRUIT NINJA</div>
+      <div class="splash-sub">HAND EDITION</div>
+      <button class="btn-primary" id="startBtn">PLAY NOW</button>
+      <div class="cam-toggle-menu">
+        <span>WEBCAM</span>
+        <label class="cam-switch">
+          <input type="checkbox" id="camToggle" />
+          <span class="cam-slider"></span>
+        </label>
+        <span>SELFIE</span>
+      </div>
+      <div class="how-to">
+        <div class="how-item">
+          <span class="icon">☝️</span><strong>Slash</strong>Swipe finger fast
+          through fruits
+        </div>
+        <div class="how-item">
+          <span class="icon">💣</span><strong>Dodge</strong>Avoid bombs or lose
+          a life
+        </div>
+        <div class="how-item">
+          <span class="icon">❤️</span><strong>5 Lives</strong>Miss = lose 1
+          heart
+        </div>
+        <div class="how-item">
+          <span class="icon">⚡</span><strong>Combo</strong>3+ in a row = bonus
+          points
+        </div>
+      </div>
+    </div>
 
-<!-- SPLASH -->
-<div id="splash" class="screen">
-  <div class="splash-title">FRUIT NINJA</div>
-  <div class="splash-sub">HAND EDITION</div>
-  <button class="btn-primary" id="startBtn">PLAY NOW</button>
-  <div class="how-to">
-    <div class="how-item"><span class="icon">☝️</span><strong>Slash</strong>Swipe finger fast through fruits</div>
-    <div class="how-item"><span class="icon">💣</span><strong>Dodge</strong>Avoid bombs or lose a life</div>
-    <div class="how-item"><span class="icon">❤️</span><strong>5 Lives</strong>Miss = lose 1 heart</div>
-    <div class="how-item"><span class="icon">⚡</span><strong>Combo</strong>3+ in a row = bonus points</div>
-  </div>
-</div>
+    <!-- GAME -->
+    <div id="game-wrap" style="display: none">
+      <canvas id="gameCanvas"></canvas>
+    </div>
 
-<!-- GAME -->
-<div id="game-wrap" style="display:none;">
-  <canvas id="gameCanvas"></canvas>
-</div>
+    <!-- HUD -->
+    <div id="hud" style="display: none">
+      <div>
+        <div class="hud-score">SCORE <span id="scoreVal">0</span></div>
+        <div class="hud-level" id="levelVal">LEVEL 1</div>
+      </div>
+      <div class="hearts" id="hearts"></div>
+    </div>
 
-<!-- HUD -->
-<div id="hud" style="display:none;">
-  <div>
-    <div class="hud-score">SCORE <span id="scoreVal">0</span></div>
-    <div class="hud-level" id="levelVal">LEVEL 1</div>
-  </div>
-  <div class="hearts" id="hearts"></div>
-</div>
+    <div class="combo-flash" id="comboFlash"></div>
+    <div id="bomb-flash"></div>
+    <div id="finger-dot"></div>
 
-<div class="combo-flash" id="comboFlash"></div>
-<div id="bomb-flash"></div>
-<div id="finger-dot"></div>
+    <!-- GAME OVER -->
+    <div id="gameover" class="screen hidden">
+      <div class="go-title">GAME OVER</div>
+      <div class="go-score" id="goScore">SCORE: 0</div>
+      <div class="go-best">BEST: <span id="goBest">0</span></div>
+      <div class="btn-row">
+        <button class="btn-primary" id="restartBtn">PLAY AGAIN</button>
+        <button class="btn-secondary" id="menuBtn">MENU</button>
+      </div>
+    </div>
 
-<!-- GAME OVER -->
-<div id="gameover" class="screen hidden">
-  <div class="go-title">GAME OVER</div>
-  <div class="go-score" id="goScore">SCORE: 0</div>
-  <div class="go-best">BEST: <span id="goBest">0</span></div>
-  <div class="btn-row">
-    <button class="btn-primary" id="restartBtn">PLAY AGAIN</button>
-    <button class="btn-secondary" id="menuBtn">MENU</button>
-  </div>
-</div>
+    <div id="cam-msg">
+      📷 Camera access needed — please allow webcam permission
+    </div>
+    <video id="webcam" playsinline></video>
 
-<div id="cam-msg">📷 Camera access needed — please allow webcam permission</div>
-<video id="webcam" playsinline></video>
+    <script
+      src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js"
+      crossorigin="anonymous"
+    ></script>
 
-<script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js" crossorigin="anonymous"></script>
-
-<script src="script.js"></script>
-</body>
+    <script src="script.js"></script>
+  </body>
 </html>
